@@ -1,0 +1,23 @@
+{
+    "name": "kielabokkie/bitcoin-address-validator",
+    "description": "Validate legacy, segwit and native segwit (bech32) Bitcoin addresses",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "kielabokkie",
+            "email": "kielabokkie@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.1.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Kielabokkie\\Bitcoin\\": "src/"
+        }
+    }
+}
