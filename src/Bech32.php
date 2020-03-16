@@ -20,10 +20,10 @@ class Bech32
     ];
 
     /**
-     * @param string $hrp - human readable part
-     * @param int $version - segwit script version
-     * @param string $program - segwit witness program
-     * @return string - the encoded address
+     * @param string $hrp Human readable part
+     * @param int $version Segwit script version
+     * @param string $program Segwit witness program
+     * @return string The encoded address
      * @throws Bech32Exception
      */
     public function encodeSegwit($hrp, $version, $program)
@@ -40,9 +40,9 @@ class Bech32
     }
 
     /**
-     * @param string $hrp - human readable part
-     * @param string $bech32 - Bech32 string to be decoded
-     * @return array - [$version, $program]
+     * @param string $hrp Human readable part
+     * @param string $bech32 Bech32 string to be decoded
+     * @return array [$version, $program]
      * @throws Bech32Exception
      */
     public function decodeSegwit($hrp, $bech32)
@@ -107,8 +107,8 @@ class Bech32
      * the conversion was successful. An exception is thrown on invalid
      * data.
      *
-     * @param string $sBech - the bech32 encoded string
-     * @return array - returns [$hrp, $dataChars]
+     * @param string $sBech The bech32 encoded string
+     * @return array Returns [$hrp, $dataChars]
      * @throws Bech32Exception
      */
     private function decode($sBech)
@@ -124,8 +124,8 @@ class Bech32
 
     /**
      * @throws Bech32Exception
-     * @param string $sBech - the bech32 encoded string
-     * @return array - returns [$hrp, $dataChars]
+     * @param string $sBech The bech32 encoded string
+     * @return array Returns [$hrp, $dataChars]
      */
     private function decodeRaw($sBech)
     {
@@ -212,6 +212,7 @@ class Bech32
 
     /**
      * Expands the human readable part into a character array for checksumming.
+     *
      * @param string $hrp
      * @param int $hrpLen
      * @return int[]
@@ -254,11 +255,11 @@ class Bech32
     /**
      * Converts words of $fromBits bits to $toBits bits in size.
      *
-     * @param int[] $data - character array of data to convert
-     * @param int $inLen - number of elements in array
-     * @param int $fromBits - word (bit count) size of provided data
-     * @param int $toBits - requested word size (bit count)
-     * @param bool $pad - whether to pad (only when encoding)
+     * @param int[] $data Character array of data to convert
+     * @param int $inLen Number of elements in array
+     * @param int $fromBits Word (bit count) size of provided data
+     * @param int $toBits Requested word size (bit count)
+     * @param bool $pad Whether to pad (only when encoding)
      * @return int[]
      * @throws Bech32Exception
      */

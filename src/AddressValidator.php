@@ -68,7 +68,8 @@ class AddressValidator
 
         if (preg_match($expr, $address) === 1) {
             try {
-                return Base58::verify($address);
+                $base58 = new Base58;
+                return $base58->verify($address);
             } catch (\Throwable $th) {
                 return false;
             }
@@ -88,7 +89,8 @@ class AddressValidator
 
         if (preg_match($expr, $address) === 1) {
             try {
-                return Base58::verify($address);
+                $base58 = new Base58;
+                return $base58->verify($address);
             } catch (\Throwable $th) {
                 return false;
             }
@@ -103,11 +105,6 @@ class AddressValidator
      */
     public function isBech32($address)
     {
-        // https://stackoverflow.com/questions/21683680/regex-to-match-bitcoin-addresses
-        // https://ihateregex.io/expr/bitcoin-address
-        // http://bitcoin.sipa.be/bech32/demo/demo.html
-        // https://github.com/Bit-Wasp/bech32/blob/master/test/SegwitAddressTest.php
-
         $prefix = $this->onlyTestnet ? 'tb' : ($this->includeTestnet ? 'bc|tb' : 'bc');
         $expr = sprintf(
             '/^((%s)(0([ac-hj-np-z02-9]{39}|[ac-hj-np-z02-9]{59})|1[ac-hj-np-z02-9]{8,87}))$/',

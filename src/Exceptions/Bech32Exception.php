@@ -6,5 +6,5 @@ use Exception;
 
 class Bech32Exception extends Exception
 {
-
+    //
 }

@@ -4,7 +4,7 @@ namespace Kielabokkie\Bitcoin;
 
 class Base58
 {
-    public static function verify($address)
+    public function verify($address)
     {
         $decoded = self::decodeAddress($address);
 
@@ -26,7 +26,7 @@ class Base58
         return ($check == substr($decoded, strlen($decoded) - 8) && $validVersion === true);
     }
 
-    protected static function decodeAddress($data)
+    private function decodeAddress($data)
     {
         $charsetHex = '0123456789ABCDEF';
         $charsetB58 = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz';

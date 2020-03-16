@@ -2,6 +2,7 @@
     "name": "kielabokkie/bitcoin-address-validator",
     "description": "Validate legacy, segwit and native segwit (bech32) Bitcoin addresses",
     "type": "library",
+    "keywords": ["bitcoin", "address", "validation", "validator", "bech32", "segwit"],
     "license": "MIT",
     "authors": [
         {
@@ -19,5 +20,8 @@
         "psr-4": {
             "Kielabokkie\\Bitcoin\\": "src/"
         }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
     }
 }
