@@ -89,3 +89,9 @@ This package is based on the following packages and uses a lot of their code:
 * [linusu/bitcoin-address-validator](https://github.com/LinusU/php-bitcoin-address-validator) by [@LinusU](https://github.com/LinusU)
 
 All credit goes to the original authors.
+
+## Donate
+
+Did this package save you some time or spark joy?
+
+A donation would be much appreciated: `32vtWJSomccxQ6y1tgSwSHXN5PChpdYy27`
