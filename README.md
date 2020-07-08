@@ -1,6 +1,6 @@
 # Bitcoin Address Validator
 
-[![Author](http://img.shields.io/badge/by-@kielabokkie-lightgrey.svg?style=flat-square)](https://twitter.com/kielabokkie)
+[![Author](http://img.shields.io/badge/follow-@kielabokkie-blue.svg?logo=twitter&style=flat-square)](https://twitter.com/kielabokkie)
 [![Build](https://img.shields.io/github/workflow/status/kielabokkie/bitcoin-address-validator/tests/master?style=flat-square)](https://github.com/kielabokkie/bitcoin-address-validator/actions)
 [![Packagist Version](https://img.shields.io/packagist/v/kielabokkie/bitcoin-address-validator.svg?style=flat-square)](https://packagist.org/packages/kielabokkie/bitcoin-address-validator)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
