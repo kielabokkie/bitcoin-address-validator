@@ -10,7 +10,7 @@ class AddressValidatorTest extends TestCase
      */
     private $validator;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
