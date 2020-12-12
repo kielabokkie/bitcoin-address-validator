@@ -12,6 +12,11 @@ Validate legacy, segwit and native segwit (bech32) Bitcoin addresses.
 
 * PHP >= 7.1
 
+| PHP  | Package Version |
+| ---- | --------------- |
+| 7.x | v1.0 |
+| 8.x | v2.0 |
+
 ## Installation
 
 Install the package via composer:
