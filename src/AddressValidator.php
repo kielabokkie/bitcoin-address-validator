@@ -2,9 +2,6 @@
 
 namespace Kielabokkie\Bitcoin;
 
-use Kielabokkie\Bitcoin\Base58;
-use Kielabokkie\Bitcoin\Bech32;
-
 class AddressValidator
 {
     private $includeTestnet = false;
@@ -40,15 +37,19 @@ class AddressValidator
      */
     public function isValid($address)
     {
-        if (self::isPayToPublicKeyHash($address)) {
+        if ($this->isPayToPublicKeyHash($address)) {
             return true;
         }
 
-        if (self::isPayToScriptHash($address)) {
+        if ($this->isPayToScriptHash($address)) {
             return true;
         }
 
-        if (self::isBech32($address)) {
+        if ($this->isPayToTaproot($address)) {
+            return true;
+        }
+
+        if ($this->isBech32($address)) {
             return true;
         }
 
@@ -98,6 +99,37 @@ class AddressValidator
     }
 
     /**
+     * Validates a P2TR (taproot) address.
+     *
+     * @param string $address
+     * @return boolean
+     */
+    public function isPayToTaproot($address)
+    {
+        if (in_array(substr($address, 0, 4), ['bc1p', 'bcrt1p', 'tb1p']) === false) {
+            return false;
+        }
+
+        $prefix = $this->onlyTestnet ? 'tb' : ($this->includeTestnet ? 'bc|tb' : 'bc');
+        $expr = sprintf(
+            '/^((%s)(0([ac-hj-np-z02-9]{39}|[ac-hj-np-z02-9]{59})|1[ac-hj-np-z02-9]{8,89}))$/',
+            $prefix
+        );
+
+        if (preg_match($expr, $address, $match) === 1) {
+            try {
+                $bech32 = new Bech32;
+                $bech32->decodeSegwit($match[2], $match[0], Bech32::BECH32M);
+                return true;
+            } catch (\Throwable $th) {
+                return false;
+            }
+        }
+
+        return false;
+    }
+
+    /**
      * Validates a bech32 (native segwit) address.
      *
      * @param string $address
@@ -114,7 +146,7 @@ class AddressValidator
         if (preg_match($expr, $address, $match) === 1) {
             try {
                 $bech32 = new Bech32;
-                $bech32->decodeSegwit($match[2], $match[0]);
+                $bech32->decodeSegwit($match[2], $match[0], Bech32::BECH32);
                 return true;
             } catch (\Throwable $th) {
                 return false;
