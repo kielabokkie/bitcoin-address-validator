@@ -6,16 +6,18 @@
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 [![Total Downloads](https://img.shields.io/packagist/dt/kielabokkie/bitcoin-address-validator.svg?style=flat-square)](https://packagist.org/packages/kielabokkie/bitcoin-address-validator)
 
-Validate legacy, segwit and native segwit (bech32) Bitcoin addresses.
+Validate legacy, segwit, native segwit (bech32), and taproot Bitcoin addresses.
 
 ## Requirements
 
-* PHP >= 7.1
+* PHP >= 7.3
 
 | PHP  | Package Version |
-| ---- | --------------- |
-| 7.x | v1.0 |
-| 8.x | v2.0 |
+| ---- |-----------------|
+| 7.x | v1.0            |
+| 8.x | v2.0+           |
+
+Please note that taproot addresses are supported from v2.1 of this package.
 
 ## Installation
 
@@ -27,13 +29,13 @@ composer require kielabokkie/bitcoin-address-validator
 
 ## Usage
 
-First you instantiate the the validator class:
+First you instantiate the validator class:
 
 ```php
 $addressValidator = new \Kielabokkie\Bitcoin\AddressValidator;
 ```
 
-Validate any kind of address (legacy, segwit and native segwit):
+Validate any kind of address (legacy, segwit, native segwit and taproot):
 
 ```php
 $addressValidator->isValid('1AGNa15ZQXAZUgFiqJ2i7Z2DPU2J6hW62i');
@@ -57,9 +59,15 @@ Native segwit (bech32) address:
 $addressValidator->isBech32('bc1qw508d6qejxtdg4y5r3zarvary0c5xw7kv8f3t4');
 ```
 
+Taproot (P2TR) address:
+
+```php
+$addressValidator->isPayToTaproot('bc1pveaamy78cq5hvl74zmfw52fxyjun3lh7lgt44j03ygx02zyk8lesgk06f6');
+```
+
 ### Testnet
 
-By default the validator only passes mainnet addresses as valid. If you would like to validate both mainnet and testnet addresses you can use method chaining:
+By default, the validator only passes mainnet addresses as valid. If you would like to validate both mainnet and testnet addresses you can use method chaining:
 
 ```php
 // Both valid
@@ -91,12 +99,13 @@ composer test
 This package is based on the following packages and uses a lot of their code:
 
 * [bitwasp/bech32](https://github.com/Bit-Wasp/bech32) by [@afk11](https://github.com/afk11)
+* [brooksyang/bech32m](https://github.com/BrooksYang/bech32m) by [BrooksYang](https://github.com/BrooksYang)
 * [linusu/bitcoin-address-validator](https://github.com/LinusU/php-bitcoin-address-validator) by [@LinusU](https://github.com/LinusU)
 
 All credit goes to the original authors.
 
 ## Donate
 
-Did this package save you some time or spark joy?
+Did this package made you lots of money, save you some time or just sparked joy?
 
 A donation would be much appreciated: `32vtWJSomccxQ6y1tgSwSHXN5PChpdYy27`
