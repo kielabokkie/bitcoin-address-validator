@@ -10,7 +10,7 @@ Validate legacy, segwit, native segwit (bech32), and taproot Bitcoin addresses.
 
 ## Requirements
 
-* PHP >= 7.4
+* PHP >= 7.3
 
 | PHP  | Package Version |
 | ---- |-----------------|
@@ -106,6 +106,6 @@ All credit goes to the original authors.
 
 ## Donate
 
-Did this package save you some time or spark joy?
+Did this package made you lots of money, save you some time or just sparked joy?
 
 A donation would be much appreciated: `32vtWJSomccxQ6y1tgSwSHXN5PChpdYy27`

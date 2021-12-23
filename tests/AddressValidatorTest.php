@@ -243,6 +243,9 @@ class AddressValidatorTest extends TestCase
             ['bc1pw508d6qejxtdg4y5r3zarvary0c5xw7kw508d6qejxtdg4y5r3zarvary0c5xw7k7grplx', true],
             ['bc1sw50qa3jx3s', true],
             ['bc1zw508d6qejxtdg4y5r3zarvaryvg6kdaj', true],
+            // taproot addresses not allowed
+            ['bc1pveaamy78cq5hvl74zmfw52fxyjun3lh7lgt44j03ygx02zyk8lesgk06f6', false],
+            ['bc1pxmxh0fz0cxrc8ryg2vh8egjj48wuwcme5zvv65q6rf5pgw7p2wmq73ax9h', false],
             // testnet addresses not allowed
             ['tb1qqqqqp399et2xygdj5xreqhjjvcmzhxw4aywxecjdzew6hylgvsesrxh6hy', false],
             ['tb1qw508d6qejxtdg4y5r3zarvary0c5xw7kxpjzsx', false],
@@ -328,8 +331,14 @@ class AddressValidatorTest extends TestCase
             ['bc1pxmxh0fz0cxrc8ryg2vh8egjj48wuwcme5zvv65q6rf5pgw7p2wmq73ax9h', true],
             ['bc1pr86eqm8tst0y4hlr3alxhstjzzlyyutz0qh908gegspcfe02fn0qqw4v8s', true],
             ['bc1pt0amqlkufexgyzvfzny76zjx6uf9hfv2t4rkk3dn32ttgsuxuh4qs25rz3', true],
+            // bech32 addresses not allowed
+            ['bc1qw508d6qejxtdg4y5r3zarvary0c5xw7kv8f3t4', false],
+            ['bc1pw508d6qejxtdg4y5r3zarvary0c5xw7kw508d6qejxtdg4y5r3zarvary0c5xw7k7grplx', false],
             // testnet addresses not allowed
             ['tb1p84x2ryuyfevgnlpnxt9f39gm7r68gwtvllxqe5w2n5ru00s9aquslzggwq', false],
+            ['tb1p5cyxnuxmeuwuvkwfem96lqzszd02n6xdcjrs20cac6yqjjwudpxqp3mvzv', false],
+            ['tb1pt4shxpethf5ft3d7edd0l7mugl6c6g6wz55llsyud0lj8qem8p4qfzxsrh', false],
+            ['tb1psxgpgtjmp5u9du20jtmhemsv729jzklckypnnuxq9ce9ewlktansjq87z0', false],
         ];
     }
 
@@ -356,6 +365,9 @@ class AddressValidatorTest extends TestCase
             ['bc1pt0amqlkufexgyzvfzny76zjx6uf9hfv2t4rkk3dn32ttgsuxuh4qs25rz3', false],
             // testnet addresses allowed
             ['tb1p84x2ryuyfevgnlpnxt9f39gm7r68gwtvllxqe5w2n5ru00s9aquslzggwq', true],
+            ['tb1p5cyxnuxmeuwuvkwfem96lqzszd02n6xdcjrs20cac6yqjjwudpxqp3mvzv', true],
+            ['tb1pt4shxpethf5ft3d7edd0l7mugl6c6g6wz55llsyud0lj8qem8p4qfzxsrh', true],
+            ['tb1psxgpgtjmp5u9du20jtmhemsv729jzklckypnnuxq9ce9ewlktansjq87z0', true],
         ];
     }
 
@@ -380,6 +392,9 @@ class AddressValidatorTest extends TestCase
             ['bc1pr86eqm8tst0y4hlr3alxhstjzzlyyutz0qh908gegspcfe02fn0qqw4v8s'],
             ['bc1pt0amqlkufexgyzvfzny76zjx6uf9hfv2t4rkk3dn32ttgsuxuh4qs25rz3'],
             ['tb1p84x2ryuyfevgnlpnxt9f39gm7r68gwtvllxqe5w2n5ru00s9aquslzggwq'],
+            ['tb1p5cyxnuxmeuwuvkwfem96lqzszd02n6xdcjrs20cac6yqjjwudpxqp3mvzv'],
+            ['tb1pt4shxpethf5ft3d7edd0l7mugl6c6g6wz55llsyud0lj8qem8p4qfzxsrh'],
+            ['tb1psxgpgtjmp5u9du20jtmhemsv729jzklckypnnuxq9ce9ewlktansjq87z0'],
         ];
     }
 
@@ -477,6 +492,8 @@ class AddressValidatorTest extends TestCase
             ['tb1qrp33g0q5c5txsp9arysrx4k6zdkfs4nce4xj0gdcccefvpysxf3pjxtptv'], // Invalid data
             ['bc1gmk9yu'],
             ['bcrt1qw508d6qejxtdg4y5r3zarvary0c5xw7kygt080'],
+            ['bcrt1p0xlxvlhemja6c4dqv22uapctqupfhlxm9h8z3k2e72q4k9hcz7vqdmchcc'], // Invalid bech32
+            ['bcrt1qw508d6qejxtdg4y5r3zarvary0c5xw7k35mrzd'], // Invalid bech32m
         ];
     }
 }
