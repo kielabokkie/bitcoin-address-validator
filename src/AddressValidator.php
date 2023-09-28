@@ -7,12 +7,19 @@ class AddressValidator
     private $includeTestnet = false;
     private $onlyTestnet = false;
 
+    public function __construct()
+    {
+        if (extension_loaded('bcmath') === false) {
+            throw new \RuntimeException(
+                'The required BCMath extension is missing. Please install it to use this package.'
+            );
+        }
+    }
+
     /**
      * Allow both mainnet and testnet addresses.
-     *
-     * @return AddressValidator
      */
-    public function includeTestnet()
+    public function includeTestnet(): AddressValidator
     {
         $this->includeTestnet = true;
         return $this;
@@ -20,10 +27,8 @@ class AddressValidator
 
     /**
      * Allow only testnet addresses.
-     *
-     * @return AddressValidator
      */
-    public function onlyTestnet()
+    public function onlyTestnet(): AddressValidator
     {
         $this->onlyTestnet = true;
         return $this;
@@ -31,11 +36,8 @@ class AddressValidator
 
     /**
      * Validates a given address.
-     *
-     * @param string $address
-     * @return boolean
      */
-    public function isValid($address)
+    public function isValid(string $address): bool
     {
         if ($this->isPayToPublicKeyHash($address)) {
             return true;
@@ -58,53 +60,46 @@ class AddressValidator
 
     /**
      * Validates a P2PKH address.
-     *
-     * @param string $address
-     * @return boolean
      */
-    public function isPayToPublicKeyHash($address)
+    public function isPayToPublicKeyHash(string $address): bool
     {
         $prefix = $this->onlyTestnet ? 'nm' : ($this->includeTestnet ? '1nm' : '1');
         $expr = sprintf('/^[%s][a-km-zA-HJ-NP-Z1-9]{25,34}$/', $prefix);
 
         if (preg_match($expr, $address) === 1) {
             try {
-                $base58 = new Base58;
-                return $base58->verify($address);
+                return (new Base58)->verify($address);
             } catch (\Throwable $th) {
                 return false;
             }
         }
+
+        return false;
     }
 
     /**
      * Validates a P2SH (segwit) address.
-     *
-     * @param string $address
-     * @return boolean
      */
-    public function isPayToScriptHash($address)
+    public function isPayToScriptHash(string $address): bool
     {
         $prefix = $this->onlyTestnet ? '2' : ($this->includeTestnet ? '23' : '3');
         $expr = sprintf('/^[%s][a-km-zA-HJ-NP-Z1-9]{25,34}$/', $prefix);
 
         if (preg_match($expr, $address) === 1) {
             try {
-                $base58 = new Base58;
-                return $base58->verify($address);
+                return (new Base58)->verify($address);
             } catch (\Throwable $th) {
                 return false;
             }
         }
+
+        return false;
     }
 
     /**
      * Validates a P2TR (taproot) address.
-     *
-     * @param string $address
-     * @return boolean
      */
-    public function isPayToTaproot($address)
+    public function isPayToTaproot(string $address): bool
     {
         if (in_array(substr($address, 0, 4), ['bc1p', 'bcrt1p', 'tb1p']) === false) {
             return false;
@@ -131,11 +126,8 @@ class AddressValidator
 
     /**
      * Validates a bech32 (native segwit) address.
-     *
-     * @param string $address
-     * @return boolean
      */
-    public function isBech32($address)
+    public function isBech32(string $address): bool
     {
         $prefix = $this->onlyTestnet ? 'tb' : ($this->includeTestnet ? 'bc|tb' : 'bc');
         $expr = sprintf(
