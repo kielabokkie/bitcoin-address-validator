@@ -43,7 +43,7 @@ class Base58
 
         while (bccomp($raw, 0) == 1) {
             $dv = (string) bcdiv($raw, '16', 0);
-            $rem = (integer) bcmod($raw, '16');
+            $rem = (int) bcmod($raw, '16');
             $raw = $dv;
             $hex = $hex . $charsetHex[$rem];
         }
